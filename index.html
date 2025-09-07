@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Body background - neon gradient */
+        body {
+            background: linear-gradient(135deg, #1f4037, #99f2c8);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /* Card styling - glassmorphism */
+        .col-sm-3 {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Image rounded */
+        .col-sm-3 img {
+            border-radius: 15px;
+        }
+
+        /* Music controls */
+        i {
+            font-size: 28px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover neon glow */
+        i:hover {
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+        }
+
+        /* Play/Pause button bigger */
+        #songbtn {
+            font-size: 36px;
+        }
+
+        .neon-text {
+            font-size: 2.5rem;
+            color: #fff;
+            text-shadow:
+                0 0 5px #00ffff,
+                0 0 10px #00ffff,
+                0 0 20px #00ffff,
+                0 0 40px #00ffff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="text-center text-white py-4">
+            <h1 class="fw-bold neon-text">My Music Player</h1>
+            <p class="fst-italic">Feel the Beat, Live the Moment 🎧</p>
+        </div>
+
+        <div class="row p-5">
+            <div class="col-sm-3 mx-auto shadow p-5 rounded-4">
+                <img src="neon.avif" alt="image" class="w-100">
+                <audio src="a.mp3" id="song"></audio>
+                <div class="row text-center py-3">
+                    <div class="col-sm-4">
+                        <i class="fa-solid fa-backward" onclick="ne()"></i>
+                    </div>
+                    <div class="col-sm-4">
+                        <i class="fa-solid fa-play fa-2xl" onclick="playpause()" id="songbtn"></i>
+                    </div>
+                    <div class="col-sm-4">
+                        <i class="fa-solid fa-forward" onclick="ne()"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var song = document.getElementById("song");
+        var songbtn = document.getElementById("songbtn");
+        var songs = ["b.mp3", "c.mp3", "a.mp3"];
+        var i = 0;
+        function playpause() {
+            if (song.paused) {
+                song.play();
+                songbtn.classList.add("fa-pause");
+                songbtn.classList.remove("fa-play");
+            }
+            else {
+                song.pause();
+                songbtn.classList.add("fa-play");
+                songbtn.classList.remove("fa-pause");
+            }
+        }
+        function ne() {
+            song.src = songs[i];
+            i++;
+            song.play();
+            songbtn.classList.add("fa-pause");
+            songbtn.classList.remove("fa-play");
+            if (i == 3) {
+                i = 0;
+            }
+        }
+    </script>
+    <script src="JS/bootstrap.bundle.js"></script>
+</body>
+
+</html>
